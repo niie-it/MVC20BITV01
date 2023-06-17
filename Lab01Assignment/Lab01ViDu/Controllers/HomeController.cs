@@ -6,6 +6,16 @@ namespace Lab01ViDu.Controllers
 {
     public class HomeController : Controller
     {
+        public string Hello(string name = "Tèo")
+        {
+            return $"Hello Mr/Ms {name}";
+        }
+
+        public int LuckyNumber()
+        {
+            return new Random().Next(100, 1000);
+        }
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)

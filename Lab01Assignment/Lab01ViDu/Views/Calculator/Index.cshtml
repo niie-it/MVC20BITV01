@@ -1,0 +1,20 @@
+﻿<form asp-action="Calculate" asp-controller="Calculator">
+	<h2>Máy tính cá nhân</h2>
+	<input name="SoHang01" type="number" value="@ViewBag.SoHang01" />
+	<select name="PhepToan">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="*">*</option>
+		<option value="/">/</option>
+	</select>
+	<input name="SoHang02" type="number" value="@ViewBag.SoHang02" />
+	<button>=</button>
+	<input disabled value="@ViewBag.KetQua"/>
+</form>
+@section Scripts{
+	<script>
+		$(function(){
+			$("select[name='PhepToan']").val('@ViewBag.PhepToan');
+		});
+	</script>
+}
