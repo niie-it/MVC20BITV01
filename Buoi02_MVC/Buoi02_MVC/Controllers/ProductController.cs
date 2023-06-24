@@ -39,10 +39,28 @@ namespace Buoi02_MVC.Controllers
 
             //chuyển về Action Index() để hiển thị
             // host/Product
+            TempData["Message"] = $"Thêm thành công {prod.Name}";
             return RedirectToAction("Index");
 
             // host/Product/Create
             //return View("Index", products);
+        }
+
+        public IActionResult Delete(Guid proid)
+        {
+            //Tìm xem có product nào có mã proid ko?
+            var product = products.FirstOrDefault(x => x.Id == proid);
+            if (product != null)
+            {
+                products.Remove(product);
+                TempData["Message"] = $"Xóa thành công {product?.Name}";
+            }
+            else
+            {
+                TempData["Message"] = $"Xóa không thành công";
+            }            
+
+            return RedirectToAction("Index");
         }
     }
 }
