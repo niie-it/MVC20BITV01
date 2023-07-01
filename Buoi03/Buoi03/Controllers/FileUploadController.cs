@@ -20,5 +20,20 @@ namespace Buoi03.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult UploadFiles(List<IFormFile> files)
+        {
+            foreach (var file in files)
+            {
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Files", DateTime.Now.Ticks.ToString() + file.FileName);
+                using (var fs = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(fs);
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
