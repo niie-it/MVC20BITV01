@@ -26,5 +26,16 @@ namespace Buoi03.Controllers
 
             return View("Index", sv);
         }
+
+        public IActionResult OpenFromFile(string filetype)
+        {
+            var sv = new StudentInfo();
+            if (filetype == "JSON")
+            {
+                var jsonStr = System.IO.File.ReadAllText(JsonFullPath);
+                sv = JsonSerializer.Deserialize<StudentInfo>(jsonStr);
+            }
+            return View("Index", sv);
+        }
     }
 }
