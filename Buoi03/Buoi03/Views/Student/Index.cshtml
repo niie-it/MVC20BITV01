@@ -1,0 +1,50 @@
+﻿@model Buoi03.Models.StudentInfo
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>StudentInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8 m-auto">
+        <form asp-action="SaveToFile">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <input asp-for="StudentId" class="form-control" />
+                <span asp-validation-for="StudentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentName" class="control-label"></label>
+                <input asp-for="StudentName" class="form-control" />
+                <span asp-validation-for="StudentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mark" class="control-label"></label>
+                <input asp-for="Mark" class="form-control" />
+                <span asp-validation-for="Mark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grade" class="control-label"></label>
+                <input asp-for="Grade" readonly class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" name="FileType" value="Save to Text file" class="btn btn-primary" />
+                <input type="submit" name="FileType" value="Save to JSON file" class="btn btn-primary" />
+                <a asp-action="OpenFromFile" asp-route-filetype="TXT" class="btn btn-success">Read from Text file</a>
+                <a asp-action="OpenFromFile" asp-route-filetype="JSON" class="btn btn-success">Read from JSON file</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
