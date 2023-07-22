@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+	@await RenderSectionAsync("MyStyles", required: false)
+</head>
+<body>
+	<div class="container">
+		<header id="myheader" style="height:80px; background-color: yellow;">#HEADER</header>
+
+		<div class="row">
+			<aside class="col-3" style="background-color:lightcyan; min-height:500px;">#MENU TRAI</aside>
+			<div class="col-9" style="min-height:500px">
+				@RenderBody()
+			</div>
+		</div>
+
+		<footer class="text-center p-2 bg-light" id="myheader">&copy; 2023 NIIE - 20BITV01</footer>
+	</div>
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+	@await RenderSectionAsync("MyScripts", required: false)
+</body>
+</html>
