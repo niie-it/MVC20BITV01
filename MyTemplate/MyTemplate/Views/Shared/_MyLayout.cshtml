@@ -12,7 +12,33 @@
 		<header id="myheader" style="height:80px; background-color: yellow;">#HEADER</header>
 
 		<div class="row">
-			<aside class="col-3" style="background-color:lightcyan; min-height:500px;">#MENU TRAI</aside>
+			<aside class="col-3" style="background-color:lightcyan; min-height:500px;">
+				#MENU TRAI
+
+				<style>
+					.mymenu a {
+						text-decoration: none;
+					}
+
+						.mymenu a:hover {
+							font-weight: bolder;
+							text-shadow: 0 0 10px red;
+						}
+				</style>
+
+				@await Html.PartialAsync("_DanhMuc")
+
+				@{
+					var danhSach = new List<Category>
+					{
+						new Category{Id=1, Name="Beer"},
+						new Category{Id=3, Name="Car"},
+						new Category{Id=3, Name="Laptop"}
+					};
+				}
+				@await Html.PartialAsync("_Category", danhSach)
+
+			</aside>
 			<div class="col-9" style="min-height:500px">
 				@RenderBody()
 			</div>
