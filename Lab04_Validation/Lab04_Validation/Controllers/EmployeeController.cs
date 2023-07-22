@@ -5,6 +5,16 @@ namespace Lab04_Validation.Controllers
 {
     public class EmployeeController : Controller
     {
+        public IActionResult CheckExistedEmployeeNo(string EmployeeNo)
+        {
+            var employees = new string[] { "111", "777", "666" };
+            if (employees.Contains(EmployeeNo))
+            {
+                return Json(data: "Mã này đã có");
+            }
+            return Json(data: true);
+        }
+
         public IActionResult Index()
         {
             return View();

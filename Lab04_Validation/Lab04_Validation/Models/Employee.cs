@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace Lab04_Validation.Models
@@ -8,6 +9,7 @@ namespace Lab04_Validation.Models
         public Guid? ID { get; set; }
 
         [Display(Name = "Mã nhân viên")]
+        [Remote(action:"CheckExistedEmployeeNo", controller: "Employee")]
         public string EmployeeNo { get; set; }
 
         [Display(Name = "Họ tên")]
