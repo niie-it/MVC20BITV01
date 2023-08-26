@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "DoanhThu";
+}
+
+<h1>Doanh Thu Theo Loại</h1>
+
+<form class="form-inline">
+    <div class="form-group mb-2">
+        <label for="tuNgay" class="sr-only">Từ ngày</label>
+        <input type="date" class="form-control-plaintext" id="tuNgay" value="">
+    </div>
+    <div class="form-group mb-2">
+        <label for="denNgay" class="sr-only">Đến ngày</label>
+        <input type="date" class="form-control" id="denNgay">
+    </div>
+    <button type="button" id="btnThongKe" class="btn btn-primary mb-2">Thống kê</button>
+</form>
+<div id="ketQuaBang">
+</div>
+@section Scripts{
+    <script>
+        $(function(){
+            //gắn sự kiện click
+            $("#btnThongKe").click(function(){
+                $.ajax({
+                    url: "/ThongKe/DoanhThuTheoLoai",
+                    data: {
+                        fromDate: $("#tuNgay").val(),
+                        toDate: $("#denNgay").val(),
+                    },
+                    success: function(response){
+                        let tableCode = $("<table class='table table-bordered' />");
+
+                        let trHead = $("<tr />");
+                        $("<th>").html("Loại").appendTo(trHead);
+                        $("<th>").html("DoanhThu").appendTo(trHead);
+                        tableCode.append(trHead);
+
+                        $.each(response, function(idx, item){
+                            console.log(idx, item);
+                            let trItem = $("<tr />");
+                            $("<td>").html(item.loai).appendTo(trItem);
+                            $("<td>").html(item.doanhThu).appendTo(trItem);
+                            tableCode.append(trItem);
+                        });
+
+                        $("#ketQuaBang").html('');
+                        $("#ketQuaBang").append(tableCode);
+                    },
+                    error: function(mess){
+                        alert(mess);
+                    }
+                });
+            });
+        });
+    </script>
+}
